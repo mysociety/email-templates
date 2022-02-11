@@ -1,0 +1,17 @@
+---
+layout: home
+---
+<div class="container">
+    <div class="list-group my-5">
+      {% assign emails = site.html_pages | where_exp: "page", "page.date" | sort: "date" | reverse %}
+      {% for email in emails %}
+        <a href="{{ email.url | relative_url }}" class="list-group-item list-group-item-action p-md-3 p-lg-4">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ email.title }}</h5>
+            <small class="text-muted">{{ email.date | date: "%b %Y" }}</small>
+          </div>
+          <p class="mb-0">{{ email.excerpt | default: "(no preview text)" }}</p>
+        </a>
+      {% endfor %}
+    </div>
+</div>
